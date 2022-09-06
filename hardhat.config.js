@@ -33,3 +33,29 @@ task(
     }
   }
 );
+
+task(
+  "balances",
+  "Prints the ETH balance of all available accounts",
+  async (taskArgs, hre) => {
+    const accounts = await hre.ethers.getSigners();
+    let num = 0;
+
+    for (const account of accounts) {
+      num++;
+      var balance = ethers.utils.formatEther(
+        await ethers.provider.getBalance(account.address)
+      );
+
+      console.log(
+        "Account #" +
+          num +
+          ": " +
+          account.address +
+          "     Account Balance: " +
+          balance +
+          "ETH"
+      );
+    }
+  }
+);
