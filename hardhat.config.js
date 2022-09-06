@@ -21,4 +21,15 @@ task(
   }
 );
 
-task("plam", "Prints the authours name", console.log("Plamen Petrov"));
+task(
+  "numbered",
+  "Prints a numbered list of available accounts",
+  async (taskArgs, hre) => {
+    const accounts = await hre.ethers.getSigners();
+    let num = 0;
+    for (const account of accounts) {
+      num++;
+      console.log("Account #" + num + ": " + account.address);
+    }
+  }
+);
